@@ -7,7 +7,7 @@
  */
 namespace FondOfSpryker\Zed\Product\Communication\Plugin\Url;
 
-use FondOfSpryker\Zed\ProductApi\Business\Exception\DuplicateUrlKeyException;
+use FondOfSpryker\Zed\Product\Business\Exception\DuplicateUrlKeyException;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Product\Dependency\Plugin\ProductAbstractPluginCreateInterface;

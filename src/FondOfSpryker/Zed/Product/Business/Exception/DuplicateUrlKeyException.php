@@ -4,7 +4,7 @@
  *
  * @author Jozsef Geng <gengjozsef86@gmail.com>
  */
-namespace FondOfSpryker\Zed\ProductApi\Business\Exception;
+namespace FondOfSpryker\Zed\Product\Business\Exception;
 
 use Exception;
 
