@@ -9,5 +9,5 @@ namespace FondOfSpryker\Shared\Product;
 
 interface ProductConstants
 {
-    const URL_ATTRIBUTE = '';
+    const URL_ATTRIBUTE_CODE = '';
 }

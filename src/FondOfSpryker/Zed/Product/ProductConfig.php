@@ -1,12 +1,13 @@
 <?php
 
 /**
- * Extend Spryker Product Module
+ * FondOfSpryker Product Module Extends Spryker Product Moduel
  *
  * @author Jozsef Geng <gengjozsef86@gmail.com>
  */
 namespace FondOfSpryker\Zed\Product;
 
+use FondOfSpryker\Shared\Product\ProductConstants;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 
 class ProductConfig extends AbstractBundleConfig
@@ -14,16 +15,8 @@ class ProductConfig extends AbstractBundleConfig
     /**
      * @return string
      */
-    public function getContainerID()
+    public function getUrlAttributeCode(): string
     {
-        return $this->get(GoogleTagManagerConstants::CONTAINER_ID);
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isEnabled()
-    {
-        return $this->get(GoogleTagManagerConstants::ENABLED);
+        return $this->get(ProductConstants::URL_ATTRIBUTE_CODE);
     }
 }
