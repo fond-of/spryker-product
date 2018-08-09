@@ -24,6 +24,5 @@ class UrlProductAbstractAfterCreatePlugin extends AbstractPlugin implements Prod
     public function create(ProductAbstractTransfer $productAbstractTransfer)
     {
         return $this->getFacade()->createProductAbstractUrl($productAbstractTransfer);
-
     }
 }

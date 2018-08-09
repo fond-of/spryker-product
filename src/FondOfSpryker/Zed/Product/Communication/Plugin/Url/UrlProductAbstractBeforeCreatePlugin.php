@@ -7,6 +7,7 @@
  */
 namespace FondOfSpryker\Zed\Product\Communication\Plugin\Url;
 
+use FondOfSpryker\Zed\ProductApi\Business\Exception\DuplicateUrlKeyException;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Product\Dependency\Plugin\ProductAbstractPluginCreateInterface;
@@ -19,12 +20,14 @@ class UrlProductAbstractBeforeCreatePlugin extends AbstractPlugin implements Pro
     /**
      * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
      *
+     * @throws \FondOfSpryker\Zed\ProductApi\Business\Exception\DuplicateUrlKeyException
+     *
      * @return \Generated\Shared\Transfer\ProductAbstractTransfer
      */
     public function create(ProductAbstractTransfer $productAbstractTransfer)
     {
         if (!$this->getFacade()->canPersistProductUrl($productAbstractTransfer)) {
-            throw new \Exception('Url key already exists!');
+            throw new DuplicateUrlKeyException('Url key already exists!');
         }
 
         return $productAbstractTransfer;

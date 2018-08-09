@@ -8,15 +8,12 @@ namespace FondOfSpryker\Zed\Product\Business;
 
 use Spryker\Zed\Product\Business\Product\ProductAbstractManager;
 use Spryker\Zed\Product\Business\ProductBusinessFactory as BaseProductBusinessFactory;
-use FondOfSpryker\Zed\Product\Business\ProductUrlGenerator;
-use FondOfSpryker\Zed\Product\Business\ProductUrlManager;
 
 /**
  * @method \FondOfSpryker\Zed\Product\ProductConfig getConfig()
  */
 class ProductBusinessFactory extends BaseProductBusinessFactory
 {
-
     /**
      * @return \FondOfSpryker\Zed\Product\Business\ProductUrlGenerator
      */
@@ -43,7 +40,6 @@ class ProductBusinessFactory extends BaseProductBusinessFactory
             $this->createProductUrlGenerator()
         );
     }
-
 
     /**
      * @param \Spryker\Zed\Product\Business\Product\ProductAbstractManager $productAbstractManager

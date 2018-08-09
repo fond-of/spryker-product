@@ -7,21 +7,15 @@
  */
 namespace FondOfSpryker\Zed\Product\Business;
 
-use Generated\Shared\Transfer\LocaleTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
 use Generated\Shared\Transfer\UrlTransfer;
-use Spryker\Zed\Product\Dependency\Facade\ProductToUrlInterface;
-use Spryker\Zed\Product\Business\Product\Url\ProductUrlGeneratorInterface;
 use Spryker\Zed\Product\Business\Product\Url\ProductUrlManager as SprykerProductUrlMananger;
-use Spryker\Zed\Product\Dependency\Facade\ProductToLocaleInterface;
-use Spryker\Zed\Product\Dependency\Facade\ProductToTouchInterface;
-use Spryker\Zed\Product\Persistence\ProductQueryContainerInterface;
 
 class ProductUrlManager extends SprykerProductUrlMananger implements ProductUrlManagerInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
+     *
      * @return \Generated\Shared\Transfer\ProductAbstractTransfer
      */
     public function createProductUrl(ProductAbstractTransfer $productAbstractTransfer)
@@ -31,9 +25,9 @@ class ProductUrlManager extends SprykerProductUrlMananger implements ProductUrlM
         return $productAbstractTransfer;
     }
 
-
     /**
      * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
+     *
      * @return \Generated\Shared\Transfer\ProductAbstractTransfer
      */
     public function updateProductUrl(ProductAbstractTransfer $productAbstractTransfer)
@@ -45,6 +39,7 @@ class ProductUrlManager extends SprykerProductUrlMananger implements ProductUrlM
 
     /**
      * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
+     *
      * @return bool
      */
     public function canPersistProductUrl(ProductAbstractTransfer $productAbstractTransfer): bool

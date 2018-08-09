@@ -9,6 +9,7 @@ interface ProductToUrlInterface extends SprykerProductToUrlInterface
 {
     /**
      * @param \Generated\Shared\Transfer\UrlTransfer $urlTransfer
+     *
      * @return mixed
      */
     public function findUrl(UrlTransfer $urlTransfer);

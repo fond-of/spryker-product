@@ -12,7 +12,6 @@ use Spryker\Zed\Product\ProductDependencyProvider as BaseProductDependencyProvid
 
 class ProductDependencyProvider extends BaseProductDependencyProvider
 {
-
     /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
@@ -28,5 +27,4 @@ class ProductDependencyProvider extends BaseProductDependencyProvider
 
         return $container;
     }
-
 }

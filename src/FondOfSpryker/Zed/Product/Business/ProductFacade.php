@@ -8,7 +8,6 @@
 namespace FondOfSpryker\Zed\Product\Business;
 
 use Generated\Shared\Transfer\ProductAbstractTransfer;
-use Spryker\Zed\Kernel\Business\AbstractFacade;
 use Spryker\Zed\Product\Business\ProductFacade as BaseProductFacade;
 
 /**
@@ -16,7 +15,6 @@ use Spryker\Zed\Product\Business\ProductFacade as BaseProductFacade;
  */
 class ProductFacade extends BaseProductFacade
 {
-
     /**
      * {@inheritdoc}
      *
@@ -51,12 +49,11 @@ class ProductFacade extends BaseProductFacade
 
     /**
      * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
+     *
      * @return bool
      */
     public function canPersistProductUrl(ProductAbstractTransfer $productAbstractTransfer): bool
     {
         return $this->getFactory()->createProductUrlManager()->canPersistProductUrl($productAbstractTransfer);
     }
-
-
 }

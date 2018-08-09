@@ -9,6 +9,7 @@ class ProductToUrlBridge extends BaseProductToUrlBridge implements ProductToUrlI
 {
     /**
      * @param \Generated\Shared\Transfer\UrlTransfer $urlTransfer
+     *
      * @return \Generated\Shared\Transfer\UrlTransfer|null
      */
     public function findUrl(UrlTransfer $urlTransfer)
