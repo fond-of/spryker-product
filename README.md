@@ -20,7 +20,7 @@ composer require fond-of-spryker/product
 ###Add the Attribute Code in the configuration file 
 ```
 // ---------- PRODUCT URL
-$config[ProductUrlConstants::URL_ATTRIBUTE_CODE] = 'url_key';
+$config[ProductConstants::URL_ATTRIBUTE_CODE] = 'url_key';
 ```
 
 ### Extend the Product Dependency in Pyz
