@@ -1,9 +1,5 @@
 <?php
-/**
- * FondOfSpryker Product Module Extends Spryker Product Module
- *
- * @author Jozsef Geng <gengjozsef86@gmail.com>
- */
+
 namespace FondOfSpryker\Zed\Product\Business;
 
 use Spryker\Zed\Product\Business\Product\ProductAbstractManager;

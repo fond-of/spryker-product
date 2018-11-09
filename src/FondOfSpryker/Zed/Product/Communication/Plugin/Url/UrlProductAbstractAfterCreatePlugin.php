@@ -1,10 +1,5 @@
 <?php
 
-/**
- * FondOfSpryker Product Module Extends Spryker Product Moduel
- *
- * @author Jozsef Geng <gengjozsef86@gmail.com>
- */
 namespace FondOfSpryker\Zed\Product\Communication\Plugin\Url;
 
 use Generated\Shared\Transfer\ProductAbstractTransfer;
@@ -21,8 +16,10 @@ class UrlProductAbstractAfterCreatePlugin extends AbstractPlugin implements Prod
      *
      * @return \Generated\Shared\Transfer\ProductAbstractTransfer
      */
-    public function create(ProductAbstractTransfer $productAbstractTransfer)
+    public function create(ProductAbstractTransfer $productAbstractTransfer): ProductAbstractTransfer
     {
-        return $this->getFacade()->createProductAbstractUrl($productAbstractTransfer);
+        $this->getFacade()->createProductAbstractUrl($productAbstractTransfer);
+
+        return $productAbstractTransfer;
     }
 }

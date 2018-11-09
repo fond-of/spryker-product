@@ -1,10 +1,5 @@
 <?php
 
-/**
- * FondOfSpryker Product Module Extends Spryker Product Moduel
- *
- * @author Jozsef Geng <gengjozsef86@gmail.com>
- */
 namespace FondOfSpryker\Zed\Product\Communication\Plugin\Url;
 
 use Generated\Shared\Transfer\ProductAbstractTransfer;
@@ -12,7 +7,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Product\Dependency\Plugin\ProductAbstractPluginUpdateInterface;
 
 /**
- * @method \FondOfSpryker\Zed\Product\Business\ProductFacadInterface getFacade()
+ * @method \FondOfSpryker\Zed\Product\Business\ProductFacadeInterface getFacade()
  */
 class UrlProductAbstractAfterUpdatePlugin extends AbstractPlugin implements ProductAbstractPluginUpdateInterface
 {
@@ -21,8 +16,10 @@ class UrlProductAbstractAfterUpdatePlugin extends AbstractPlugin implements Prod
      *
      * @return \Generated\Shared\Transfer\ProductAbstractTransfer
      */
-    public function update(ProductAbstractTransfer $productAbstractTransfer)
+    public function update(ProductAbstractTransfer $productAbstractTransfer): ProductAbstractTransfer
     {
-        return $this->getFacade()->updateProductAbstractUrl($productAbstractTransfer);
+        $this->getFacade()->updateProductAbstractUrl($productAbstractTransfer);
+
+        return $productAbstractTransfer;
     }
 }

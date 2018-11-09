@@ -1,10 +1,5 @@
 <?php
 
-/**
- * FondOfSpryker Product Module Extends Spryker Product Module
- *
- * @author Jozsef Geng <gengjozsef86@gmail.com>
- */
 namespace FondOfSpryker\Zed\Product\Business;
 
 use Generated\Shared\Transfer\ProductAbstractTransfer;
@@ -13,30 +8,6 @@ use Spryker\Zed\Product\Business\Product\Url\ProductUrlManager as SprykerProduct
 
 class ProductUrlManager extends SprykerProductUrlMananger implements ProductUrlManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductAbstractTransfer
-     */
-    public function createProductUrl(ProductAbstractTransfer $productAbstractTransfer)
-    {
-        parent::createProductUrl($productAbstractTransfer);
-
-        return $productAbstractTransfer;
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductAbstractTransfer
-     */
-    public function updateProductUrl(ProductAbstractTransfer $productAbstractTransfer)
-    {
-        parent::updateProductUrl($productAbstractTransfer);
-
-        return $productAbstractTransfer;
-    }
-
     /**
      * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
      *

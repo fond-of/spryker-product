@@ -1,13 +1,9 @@
 <?php
 
-/**
- * FondOfSpryker Product Module Extends Spryker Product Moduel
- *
- * @author Jozsef Geng <gengjozsef86@gmail.com>
- */
 namespace FondOfSpryker\Zed\Product;
 
 use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlBridge;
+use Spryker\Zed\Kernel\Container;
 use Spryker\Zed\Product\ProductDependencyProvider as BaseProductDependencyProvider;
 
 class ProductDependencyProvider extends BaseProductDependencyProvider
@@ -17,7 +13,7 @@ class ProductDependencyProvider extends BaseProductDependencyProvider
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideBusinessLayerDependencies(Container $container)
+    public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
 

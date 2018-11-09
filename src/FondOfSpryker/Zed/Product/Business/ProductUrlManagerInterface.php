@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Spryker Product Url Module
- *
- * @author Jozsef Geng <gengjozsef86@gmail.com>
- */
 namespace FondOfSpryker\Zed\Product\Business;
 
 use Generated\Shared\Transfer\ProductAbstractTransfer;

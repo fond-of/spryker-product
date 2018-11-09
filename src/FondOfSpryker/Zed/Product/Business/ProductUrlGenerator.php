@@ -5,11 +5,13 @@
  *
  * @author Jozsef Geng <gengjozsef86@gmail.com>
  */
+
 namespace FondOfSpryker\Zed\Product\Business;
 
 use FondOfSpryker\Zed\Product\ProductConfig;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
+use Spryker\Shared\Kernel\Store;
 use Spryker\Zed\Product\Business\Product\NameGenerator\ProductAbstractNameGeneratorInterface;
 use Spryker\Zed\Product\Business\Product\Url\ProductUrlGenerator as SprykerProductUrlGenerator;
 use Spryker\Zed\Product\Dependency\Facade\ProductToLocaleInterface;
@@ -51,26 +53,72 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
      *
      * @return string
      */
-    protected function generateUrlByLocale(ProductAbstractTransfer $productAbstractTransfer, LocaleTransfer $localeTransfer): string
-    {
-        if ($urlAttributeCode = $this->config->getUrlAttributeCode()) {
-            $localizedAttributes = $productAbstractTransfer->getLocalizedAttributes();
+    protected function generateUrlByLocale(
+        ProductAbstractTransfer $productAbstractTransfer,
+        LocaleTransfer $localeTransfer
+    ): string {
+        $urlPrefix = $this->getUrlPrefixByLocale($localeTransfer);
+        $urlKey = $this->getUrlKey($productAbstractTransfer, $localeTransfer);
 
-            foreach ($localizedAttributes as $localizedAttribute) {
-                if ($localizedAttribute->getLocale()->getIdLocale() !== $localeTransfer->getIdLocale()) {
-                    continue;
-                }
+        return sprintf('/%s/%s', $urlPrefix, $urlKey);
+    }
 
-                $attributes = $localizedAttribute->getAttributes();
+    /**
+     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
+     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
+     *
+     * @return string
+     */
+    protected function getUrlKey(
+        ProductAbstractTransfer $productAbstractTransfer,
+        LocaleTransfer $localeTransfer
+    ): string {
+        $urlAttributeCode = $this->config->getUrlAttributeCode();
+        $localizedProductName = $this->productAbstractNameGenerator->getLocalizedProductAbstractName($productAbstractTransfer, $localeTransfer);
+        $slug = $this->utilTextService->generateSlug($localizedProductName);
 
-                if (!array_key_exists($urlAttributeCode, $attributes) || !isset($attributes[$urlAttributeCode])) {
-                    return false;
-                }
+        $urlKey = $slug . '-' . $productAbstractTransfer->getIdProductAbstract();
 
-                return '/' . mb_substr($localeTransfer->getLocaleName(), 0, 2) . '/' . $attributes[$urlAttributeCode];
-            }
+        if ($urlAttributeCode === null) {
+            return $urlKey;
         }
 
-        return parent::generateUrlByLocale($productAbstractTransfer, $localeTransfer);
+        $localizedAttributes = $productAbstractTransfer->getLocalizedAttributes();
+
+        foreach ($localizedAttributes as $localizedAttribute) {
+            if ($localizedAttribute->getLocale()->getIdLocale() !== $localeTransfer->getIdLocale()) {
+                continue;
+            }
+
+            $attributes = $localizedAttribute->getAttributes();
+
+            if (!array_key_exists($urlAttributeCode, $attributes) || empty($attributes[$urlAttributeCode])) {
+                break;
+            }
+
+            return $attributes[$urlAttributeCode];
+        }
+
+        return $urlKey;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
+     *
+     * @return string
+     */
+    protected function getUrlPrefixByLocale(LocaleTransfer $localeTransfer): string
+    {
+        $locales = Store::getInstance()->getLocales();
+
+        foreach ($locales as $urlPrefix => $locale) {
+            if ($locale !== $localeTransfer->getLocaleName()) {
+                continue;
+            }
+
+            return $urlPrefix;
+        }
+
+        return \mb_substr($localeTransfer->getLocaleName(), 0, 2);
     }
 }
