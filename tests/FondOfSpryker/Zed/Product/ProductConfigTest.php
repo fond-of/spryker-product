@@ -36,5 +36,4 @@ class ProductConfigTest extends Unit
 
         $this->assertEquals('url_key', $productConfig->getUrlAttributeCode());
     }
-
 }

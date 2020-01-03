@@ -2,6 +2,8 @@
 
 namespace FondOfSpryker\Zed\Product\Business;
 
+use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlInterface;
+use FondOfSpryker\Zed\Product\ProductDependencyProvider;
 use Spryker\Zed\Product\Business\Product\ProductAbstractManager;
 use Spryker\Zed\Product\Business\ProductBusinessFactory as BaseProductBusinessFactory;
 
@@ -51,5 +53,13 @@ class ProductBusinessFactory extends BaseProductBusinessFactory
         $productAbstractManager->attachReadObserver($this->createProductAbstractReadObserverPluginManager());
 
         return $productAbstractManager;
+    }
+
+    /**
+     * @return \FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlInterface
+     */
+    protected function getUrlFacade(): ProductToUrlInterface
+    {
+        return $this->getProvidedDependency(ProductDependencyProvider::FACADE_URL);
     }
 }

@@ -15,6 +15,8 @@ class UrlProductAbstractBeforeCreatePlugin extends AbstractPlugin implements Pro
     /**
      * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
      *
+     * @throws \FondOfSpryker\Zed\Product\Business\Exception\DuplicateUrlKeyException
+     *
      * @return \Generated\Shared\Transfer\ProductAbstractTransfer
      */
     public function create(ProductAbstractTransfer $productAbstractTransfer): ProductAbstractTransfer
