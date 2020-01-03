@@ -2,9 +2,12 @@
 
 namespace FondOfSpryker\Zed\Product\Business;
 
+use FondOfSpryker\Zed\Product\Business\Product\Sku\FondOfSkuGenerator;
 use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlInterface;
 use FondOfSpryker\Zed\Product\ProductDependencyProvider;
 use Spryker\Zed\Product\Business\Product\ProductAbstractManager;
+use Spryker\Zed\Product\Business\Product\Sku\SkuGeneratorInterface;
+use Spryker\Zed\Product\Business\Product\Url\ProductUrlGeneratorInterface;
 use Spryker\Zed\Product\Business\ProductBusinessFactory as BaseProductBusinessFactory;
 
 /**
@@ -13,9 +16,9 @@ use Spryker\Zed\Product\Business\ProductBusinessFactory as BaseProductBusinessFa
 class ProductBusinessFactory extends BaseProductBusinessFactory
 {
     /**
-     * @return \FondOfSpryker\Zed\Product\Business\ProductUrlGenerator
+     * @return \Spryker\Zed\Product\Business\Product\Url\ProductUrlGeneratorInterface
      */
-    public function createProductUrlGenerator()
+    public function createProductUrlGenerator(): ProductUrlGeneratorInterface
     {
         return new ProductUrlGenerator(
             $this->createProductAbstractNameGenerator(),
@@ -44,7 +47,7 @@ class ProductBusinessFactory extends BaseProductBusinessFactory
      *
      * @return \Spryker\Zed\Product\Business\Product\ProductAbstractManager
      */
-    protected function attachProductAbstractManagerObservers(ProductAbstractManager $productAbstractManager)
+    protected function attachProductAbstractManagerObservers(ProductAbstractManager $productAbstractManager): ProductAbstractManager
     {
         $productAbstractManager->attachBeforeCreateObserver($this->createProductAbstractBeforeCreateObserverPluginManager());
         $productAbstractManager->attachAfterCreateObserver($this->createProductAbstractAfterCreateObserverPluginManager());
@@ -53,6 +56,14 @@ class ProductBusinessFactory extends BaseProductBusinessFactory
         $productAbstractManager->attachReadObserver($this->createProductAbstractReadObserverPluginManager());
 
         return $productAbstractManager;
+    }
+
+    /**
+     * @return \Spryker\Zed\Product\Business\Product\Sku\SkuGeneratorInterface
+     */
+    public function createSkuGenerator(): SkuGeneratorInterface
+    {
+        return new FondOfSkuGenerator($this->getUtilTextService(), $this->createSkuIncrementGenerator());
     }
 
     /**
