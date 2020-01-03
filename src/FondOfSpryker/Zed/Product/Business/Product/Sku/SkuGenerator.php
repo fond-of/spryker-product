@@ -6,12 +6,7 @@ namespace FondOfSpryker\Zed\Product\Business\Product\Sku;
 
 use Spryker\Zed\Product\Business\Product\Sku\SkuGenerator as SprykerSkuGenerator;
 
-use function function_exists;
-use function iconv;
-use function preg_replace;
-use function trim;
-
-class FondOfSkuGenerator extends SprykerSkuGenerator
+class SkuGenerator extends SprykerSkuGenerator
 {
     /**
      *  - Transliterates from UTF-8 to ASCII character set

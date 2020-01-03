@@ -2,7 +2,7 @@
 
 namespace FondOfSpryker\Zed\Product\Business;
 
-use FondOfSpryker\Zed\Product\Business\Product\Sku\FondOfSkuGenerator;
+use FondOfSpryker\Zed\Product\Business\Product\Sku\SkuGenerator;
 use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlInterface;
 use FondOfSpryker\Zed\Product\ProductDependencyProvider;
 use Spryker\Zed\Product\Business\Product\ProductAbstractManager;
@@ -63,7 +63,7 @@ class ProductBusinessFactory extends BaseProductBusinessFactory
      */
     public function createSkuGenerator(): SkuGeneratorInterface
     {
-        return new FondOfSkuGenerator($this->getUtilTextService(), $this->createSkuIncrementGenerator());
+        return new SkuGenerator($this->getUtilTextService(), $this->createSkuIncrementGenerator());
     }
 
     /**
