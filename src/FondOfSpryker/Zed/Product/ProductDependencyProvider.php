@@ -3,7 +3,6 @@
 namespace FondOfSpryker\Zed\Product;
 
 use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlBridge;
-use phpDocumentor\Reflection\Types\Static_;
 use Spryker\Zed\Kernel\Container;
 use Spryker\Zed\Product\ProductDependencyProvider as BaseProductDependencyProvider;
 
@@ -31,7 +30,7 @@ class ProductDependencyProvider extends BaseProductDependencyProvider
      */
     protected function addUrlFacade(Container $container): Container
     {
-        $container[Static::FACADE_URL] = function (Container $container) {
+        $container[static::FACADE_URL] = function (Container $container) {
             return new ProductToUrlBridge($container->getLocator()->url()->facade());
         };
 

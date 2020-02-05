@@ -1,11 +1,5 @@
 <?php
 
-/**
- * FondOfSpryker Product Module Extends Spryker Product Moduel
- *
- * @author Jozsef Geng <gengjozsef86@gmail.com>
- */
-
 namespace FondOfSpryker\Zed\Product\Business;
 
 use FondOfSpryker\Zed\Product\ProductConfig;
@@ -28,8 +22,6 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
     protected $config;
 
     /**
-     * ProductUrlGenerator constructor.
-     *
      * @param \Spryker\Zed\Product\Business\Product\NameGenerator\ProductAbstractNameGeneratorInterface $productAbstractNameGenerator
      * @param \Spryker\Zed\Product\Dependency\Facade\ProductToLocaleInterface $localeFacade
      * @param \Spryker\Zed\Product\Dependency\Service\ProductToUtilTextInterface $utilTextService
@@ -119,6 +111,6 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
             return $urlPrefix;
         }
 
-        return \mb_substr($localeTransfer->getLocaleName(), 0, 2);
+        return mb_substr($localeTransfer->getLocaleName(), 0, 2);
     }
 }

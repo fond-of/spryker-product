@@ -1,10 +1,5 @@
 <?php
 
-/**
- * FondOfSpryker Product Module Extends Spryker Product Module
- *
- * @author Jozsef Geng <gengjozsef86@gmail.com>
- */
 namespace FondOfSpryker\Zed\Product\Business;
 
 use Generated\Shared\Transfer\ProductAbstractTransfer;
@@ -17,7 +12,7 @@ use Spryker\Zed\Product\Business\ProductFacade as BaseProductFacade;
 class ProductFacade extends BaseProductFacade implements ProductFacadeInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -33,7 +28,7 @@ class ProductFacade extends BaseProductFacade implements ProductFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -49,7 +44,7 @@ class ProductFacade extends BaseProductFacade implements ProductFacadeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
