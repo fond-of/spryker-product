@@ -9,6 +9,11 @@ use Spryker\Zed\Product\Business\Product\Url\ProductUrlManager as SprykerProduct
 class ProductUrlManager extends SprykerProductUrlMananger implements ProductUrlManagerInterface
 {
     /**
+     * @var \FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlInterface
+     */
+    protected $urlFacade;
+
+    /**
      * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
      *
      * @return bool

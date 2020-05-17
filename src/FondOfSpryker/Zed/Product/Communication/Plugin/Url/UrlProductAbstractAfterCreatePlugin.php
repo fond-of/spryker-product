@@ -7,7 +7,8 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Product\Dependency\Plugin\ProductAbstractPluginCreateInterface;
 
 /**
- * @method \FondOfSpryker\Zed\Product\Business\ProductFacadInterface getFacade()
+ * @method \FondOfSpryker\Zed\Product\Business\ProductFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\Product\ProductConfig getConfig()
  */
 class UrlProductAbstractAfterCreatePlugin extends AbstractPlugin implements ProductAbstractPluginCreateInterface
 {
