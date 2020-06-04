@@ -9,6 +9,7 @@ use Spryker\Zed\Product\Dependency\Plugin\ProductAbstractPluginCreateInterface;
 
 /**
  * @method \FondOfSpryker\Zed\Product\Business\ProductFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\Product\ProductConfig getConfig()
  */
 class UrlProductAbstractBeforeCreatePlugin extends AbstractPlugin implements ProductAbstractPluginCreateInterface
 {
