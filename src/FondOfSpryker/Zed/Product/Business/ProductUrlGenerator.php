@@ -2,6 +2,7 @@
 
 namespace FondOfSpryker\Zed\Product\Business;
 
+use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToStoreInterface;
 use FondOfSpryker\Zed\Product\ProductConfig;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
@@ -49,8 +50,13 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
         ProductAbstractTransfer $productAbstractTransfer,
         LocaleTransfer $localeTransfer
     ): string {
+        $localizationBlacklist = $this->config->getUrlLocalizationBlacklist();
         $urlPrefix = $this->getUrlPrefixByLocale($localeTransfer);
         $urlKey = $this->getUrlKey($productAbstractTransfer, $localeTransfer);
+
+        if ($localizationBlacklist !== null && in_array($urlPrefix, $localizationBlacklist)) {
+            return sprintf('/%s', $urlKey);
+        }
 
         return sprintf('/%s/%s', $urlPrefix, $urlKey);
     }

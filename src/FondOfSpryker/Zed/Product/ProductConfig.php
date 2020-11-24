@@ -14,4 +14,12 @@ class ProductConfig extends AbstractBundleConfig
     {
         return $this->get(ProductConstants::URL_ATTRIBUTE_CODE);
     }
+
+    /**
+     * @return array|null
+     */
+    public function getUrlLocalizationBlacklist(): ?array
+    {
+        return $this->get(ProductConstants::URL_LOCALIZATION_BLACKLIST);
+    }
 }
