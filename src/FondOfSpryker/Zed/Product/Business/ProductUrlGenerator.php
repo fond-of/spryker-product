@@ -50,11 +50,11 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
         ProductAbstractTransfer $productAbstractTransfer,
         LocaleTransfer $localeTransfer
     ): string {
-        $localizationBlacklist = $this->config->getUrlLocalizationBlacklist();
+        $urlLocaleToSkip = $this->config->getUrlLocaleToSkip();
         $urlPrefix = $this->getUrlPrefixByLocale($localeTransfer);
         $urlKey = $this->getUrlKey($productAbstractTransfer, $localeTransfer);
 
-        if ($localizationBlacklist !== null && in_array($urlPrefix, $localizationBlacklist)) {
+        if ($urlLocaleToSkip !== null && $urlPrefix === $urlLocaleToSkip) {
             return sprintf('/%s', $urlKey);
         }
 

@@ -16,10 +16,10 @@ class ProductConfig extends AbstractBundleConfig
     }
 
     /**
-     * @return array|null
+     * @return string|null
      */
-    public function getUrlLocalizationBlacklist(): ?array
+    public function getUrlLocaleToSkip(): ?string
     {
-        return $this->get(ProductConstants::URL_LOCALIZATION_BLACKLIST);
+        return $this->get(ProductConstants::URL_LOCALE_TO_SKIP);
     }
 }

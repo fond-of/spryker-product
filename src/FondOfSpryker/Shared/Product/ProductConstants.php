@@ -6,5 +6,5 @@ interface ProductConstants
 {
     public const URL_ATTRIBUTE_CODE = 'PRODUCT:URL_ATTRIBUTE_CODE';
 
-    public const URL_LOCALIZATION_BLACKLIST = 'PRODUCT:URL_LOCALIZATION_BLACKLIST';
+    public const URL_LOCALE_TO_SKIP = 'PRODUCT:URL_LOCALE_TO_SKIP';
 }
