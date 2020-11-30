@@ -14,4 +14,12 @@ class ProductConfig extends AbstractBundleConfig
     {
         return $this->get(ProductConstants::URL_ATTRIBUTE_CODE);
     }
+
+    /**
+     * @return string|null
+     */
+    public function getUrlLocaleToSkip(): ?string
+    {
+        return $this->get(ProductConstants::URL_LOCALE_TO_SKIP);
+    }
 }

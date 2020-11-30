@@ -3,37 +3,39 @@
 namespace FondOfSpryker\Zed\Product;
 
 use Codeception\Test\Unit;
-use org\bovigo\vfs\vfsStream;
 
 class ProductConfigTest extends Unit
 {
     /**
-     * @var \org\bovigo\vfs\vfsStreamDirectory
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    protected $vfsStreamDirectory;
+    private $configMock;
 
     /**
      * @return void
      */
-    public function _before()
+    public function _before(): void
     {
-        $this->vfsStreamDirectory = vfsStream::setup('root', null, [
-            'config' => [
-                'Shared' => [
-                    'stores.php' => file_get_contents(codecept_data_dir('stores.php')),
-                    'config_default.php' => file_get_contents(codecept_data_dir('config_default.php')),
-                ],
-            ],
-        ]);
+        $this->configMock = $this->getMockBuilder(ProductConfig::class)
+            ->onlyMethods(['getUrlAttributeCode', 'getUrlLocaleToSkip'])
+            ->getMock();
     }
 
     /**
      * @return void
      */
-    public function testGetUrlAttributeCode()
+    public function testGetUrlAttributeCode(): void
     {
-        $productConfig = new ProductConfig();
+        $this->configMock->method('getUrlAttributeCode')->willReturn('url_key');
+        $this->assertEquals('url_key', $this->configMock->getUrlAttributeCode());
+    }
 
-        $this->assertEquals('url_key', $productConfig->getUrlAttributeCode());
+    /**
+     * @return void
+     */
+    public function testGetUrlLocaleToSkip(): void
+    {
+        $this->configMock->method('getUrlLocaleToSkip')->willReturn('de');
+        $this->assertEquals('de', $this->configMock->getUrlLocaleToSkip());
     }
 }
