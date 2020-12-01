@@ -8,17 +8,17 @@ use Spryker\Zed\Kernel\AbstractBundleConfig;
 class ProductConfig extends AbstractBundleConfig
 {
     /**
-     * @return string|null
+     * @return string
      */
-    public function getUrlAttributeCode(): ?string
+    public function getUrlAttributeCode(): string
     {
         return $this->get(ProductConstants::URL_ATTRIBUTE_CODE, '');
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getUrlLocaleToSkip(): ?string
+    public function getUrlLocaleToSkip(): string
     {
         return $this->get(ProductConstants::URL_LOCALE_TO_SKIP, '');
     }
