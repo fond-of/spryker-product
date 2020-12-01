@@ -12,7 +12,7 @@ class ProductConfig extends AbstractBundleConfig
      */
     public function getUrlAttributeCode(): ?string
     {
-        return $this->get(ProductConstants::URL_ATTRIBUTE_CODE, null);
+        return $this->get(ProductConstants::URL_ATTRIBUTE_CODE, '');
     }
 
     /**
@@ -20,6 +20,6 @@ class ProductConfig extends AbstractBundleConfig
      */
     public function getUrlLocaleToSkip(): ?string
     {
-        return $this->get(ProductConstants::URL_LOCALE_TO_SKIP, null);
+        return $this->get(ProductConstants::URL_LOCALE_TO_SKIP, '');
     }
 }
