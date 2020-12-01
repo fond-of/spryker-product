@@ -54,7 +54,7 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
         $urlPrefix = $this->getUrlPrefixByLocale($localeTransfer);
         $urlKey = $this->getUrlKey($productAbstractTransfer, $localeTransfer);
 
-        if ($urlLocaleToSkip !== null && $urlPrefix === $urlLocaleToSkip) {
+        if ($urlLocaleToSkip !== '' && $urlPrefix === $urlLocaleToSkip) {
             return sprintf('/%s', $urlKey);
         }
 
@@ -77,7 +77,7 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
 
         $urlKey = $slug . '-' . $productAbstractTransfer->getIdProductAbstract();
 
-        if ($urlAttributeCode === null) {
+        if ($urlAttributeCode === '') {
             return $urlKey;
         }
 
