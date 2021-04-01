@@ -12,6 +12,12 @@ class ProductConfig extends AbstractBundleConfig
      */
     public function getUrlAttributeCode(): ?string
     {
-        return $this->get(ProductConstants::URL_ATTRIBUTE_CODE);
+        $urlAttributeCode = $this->get(ProductConstants::URL_ATTRIBUTE_CODE, '');
+
+        if ($urlAttributeCode === '') {
+            return null;
+        }
+
+        return $urlAttributeCode;
     }
 }
