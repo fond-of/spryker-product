@@ -30,7 +30,7 @@ class ProductDependencyProvider extends BaseProductDependencyProvider
      */
     protected function addUrlFacade(Container $container): Container
     {
-        $container[self::FACADE_URL] = function (Container $container) {
+        $container[self::FACADE_URL] = static function (Container $container) {
             return new ProductToUrlBridge($container->getLocator()->url()->facade());
         };
 

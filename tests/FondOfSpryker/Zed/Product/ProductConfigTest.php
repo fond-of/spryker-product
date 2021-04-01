@@ -3,28 +3,23 @@
 namespace FondOfSpryker\Zed\Product;
 
 use Codeception\Test\Unit;
-use org\bovigo\vfs\vfsStream;
+use FondOfSpryker\Shared\Product\ProductConstants;
 
 class ProductConfigTest extends Unit
 {
     /**
-     * @var \org\bovigo\vfs\vfsStreamDirectory
+     * @var \FondOfSpryker\Zed\Product\ProductConfig|\PHPUnit\Framework\MockObject\MockObject
      */
-    protected $vfsStreamDirectory;
+    protected $productConfig;
 
     /**
      * @return void
      */
-    public function _before()
+    protected function _before(): void
     {
-        $this->vfsStreamDirectory = vfsStream::setup('root', null, [
-            'config' => [
-                'Shared' => [
-                    'stores.php' => file_get_contents(codecept_data_dir('stores.php')),
-                    'config_default.php' => file_get_contents(codecept_data_dir('config_default.php')),
-                ],
-            ],
-        ]);
+        $this->productConfig = $this->getMockBuilder(ProductConfig::class)
+            ->onlyMethods(['get'])
+            ->getMock();
     }
 
     /**
@@ -32,8 +27,24 @@ class ProductConfigTest extends Unit
      */
     public function testGetUrlAttributeCode()
     {
-        $productConfig = new ProductConfig();
+        $this->productConfig->expects(static::atLeastOnce())
+            ->method('get')
+            ->with(ProductConstants::URL_ATTRIBUTE_CODE, '')
+            ->willReturn('url_key');
 
-        $this->assertEquals('url_key', $productConfig->getUrlAttributeCode());
+        static::assertEquals('url_key', $this->productConfig->getUrlAttributeCode());
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetDefaultUrlAttributeCode()
+    {
+        $this->productConfig->expects(static::atLeastOnce())
+            ->method('get')
+            ->with(ProductConstants::URL_ATTRIBUTE_CODE, '')
+            ->willReturn('');
+
+        static::assertEquals(null, $this->productConfig->getUrlAttributeCode());
     }
 }
