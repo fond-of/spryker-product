@@ -32,7 +32,6 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
         ProductToUtilTextInterface $utilTextService,
         ProductConfig $config
     ) {
-
         parent::__construct($productAbstractNameGenerator, $localeFacade, $utilTextService);
 
         $this->config = $config;

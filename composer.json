@@ -39,7 +39,7 @@
   "autoload-dev": {
     "psr-4": {
       "FondOfSpryker\\": "tests/FondOfSpryker/",
-      "Generated\\": "tests/Generated/"
+      "Generated\\": "src/Generated/"
     }
   }
 }
