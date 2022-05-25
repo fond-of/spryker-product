@@ -8,8 +8,10 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Product\Dependency\Plugin\ProductAbstractPluginCreateInterface;
 
 /**
- * @method \FondOfSpryker\Zed\Product\Business\ProductFacadeInterface getFacade()
- * @method \FondOfSpryker\Zed\Product\ProductConfig getConfig()
+ * @method \Spryker\Zed\Product\Business\ProductFacadeInterface getFacade()
+ * @method \Spryker\Zed\Product\ProductConfig getConfig()
+ * @method \Spryker\Zed\Product\Persistence\ProductQueryContainerInterface getQueryContainer()
+ * @method \Spryker\Zed\Product\Communication\ProductCommunicationFactory getFactory()
  */
 class UrlProductAbstractBeforeCreatePlugin extends AbstractPlugin implements ProductAbstractPluginCreateInterface
 {
@@ -22,7 +24,10 @@ class UrlProductAbstractBeforeCreatePlugin extends AbstractPlugin implements Pro
      */
     public function create(ProductAbstractTransfer $productAbstractTransfer): ProductAbstractTransfer
     {
-        if (!$this->getFacade()->canPersistProductAbstractUrl($productAbstractTransfer)) {
+        /** @var \FondOfSpryker\Zed\Product\Business\ProductFacadeInterface $facade */
+        $facade = $this->getFacade();
+
+        if (!$facade->canPersistProductAbstractUrl($productAbstractTransfer)) {
             throw new DuplicateUrlKeyException('Url key already exists!');
         }
 

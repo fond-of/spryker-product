@@ -6,7 +6,7 @@ use Orm\Zed\Product\Persistence\SpyProductAbstractStoreQuery;
 use Spryker\Zed\Product\Persistence\ProductQueryContainer as SprykerProductQueryContainer;
 
 /**
- * @method \FondOfSpryker\Zed\Product\Persistence\ProductPersistenceFactory getFactory()
+ * @method \Spryker\Zed\Product\Persistence\ProductPersistenceFactory getFactory()
  */
 class ProductQueryContainer extends SprykerProductQueryContainer implements ProductQueryContainerInterface
 {
