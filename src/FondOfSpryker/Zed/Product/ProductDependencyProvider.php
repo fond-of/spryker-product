@@ -2,7 +2,6 @@
 
 namespace FondOfSpryker\Zed\Product;
 
-use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToStoreBridge;
 use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlBridge;
 use Spryker\Zed\Kernel\Container;
 use Spryker\Zed\Product\ProductDependencyProvider as BaseProductDependencyProvider;

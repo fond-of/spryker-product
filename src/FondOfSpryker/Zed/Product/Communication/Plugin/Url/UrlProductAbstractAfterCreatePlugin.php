@@ -7,8 +7,8 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Product\Dependency\Plugin\ProductAbstractPluginCreateInterface;
 
 /**
- * @method \FondOfSpryker\Zed\Product\Business\ProductFacadeInterface getFacade()
- * @method \FondOfSpryker\Zed\Product\ProductConfig getConfig()
+ * @method \Spryker\Zed\Product\Business\ProductFacadeInterface getFacade()
+ * @method \Spryker\Zed\Product\ProductConfig getConfig()
  * @method \Spryker\Zed\Product\Persistence\ProductQueryContainerInterface getQueryContainer()
  * @method \Spryker\Zed\Product\Communication\ProductCommunicationFactory getFactory()
  */
@@ -21,7 +21,10 @@ class UrlProductAbstractAfterCreatePlugin extends AbstractPlugin implements Prod
      */
     public function create(ProductAbstractTransfer $productAbstractTransfer): ProductAbstractTransfer
     {
-        $this->getFacade()->createProductAbstractUrl($productAbstractTransfer);
+        /** @var \FondOfSpryker\Zed\Product\Business\ProductFacadeInterface $facade */
+        $facade = $this->getFacade();
+
+        $facade->createProductAbstractUrl($productAbstractTransfer);
 
         return $productAbstractTransfer;
     }
