@@ -9,8 +9,10 @@ use Spryker\Zed\Product\ProductDependencyProvider as BaseProductDependencyProvid
 
 class ProductDependencyProvider extends BaseProductDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const FACADE_URL = 'PRODUCT:FACADE_URL';
-    public const FACADE_STORE = 'PRODUCT:FACADE_STORE';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -20,10 +22,8 @@ class ProductDependencyProvider extends BaseProductDependencyProvider
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
-        $container = $this->addUrlFacade($container);
-        $container = $this->addStoreFacade($container);
 
-        return $container;
+        return $this->addUrlFacade($container);
     }
 
     /**
@@ -35,20 +35,6 @@ class ProductDependencyProvider extends BaseProductDependencyProvider
     {
         $container[static::FACADE_URL] = function (Container $container) {
             return new ProductToUrlBridge($container->getLocator()->url()->facade());
-        };
-
-        return $container;
-    }
-
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
-    protected function addStoreFacade(Container $container): Container
-    {
-        $container[static::FACADE_STORE] = function (Container $container) {
-            return new ProductToStoreBridge($container->getLocator()->store()->facade());
         };
 
         return $container;
