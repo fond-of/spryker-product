@@ -15,13 +15,16 @@ class ProductUrlManager extends SprykerProductUrlMananger implements ProductUrlM
      */
     public function canPersistProductUrl(ProductAbstractTransfer $productAbstractTransfer): bool
     {
+        /** @var \FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlBridge $urlFacade */
+        $urlFacade = $this->urlFacade;
+
         $productUrl = $this->urlGenerator->generateProductUrl($productAbstractTransfer);
 
         foreach ($productUrl->getUrls() as $urlTransfer) {
             $newUrlTransfer = new UrlTransfer();
             $newUrlTransfer->setUrl($urlTransfer->getUrl());
 
-            $existingUrlTransfer = $this->urlFacade->findUrl($newUrlTransfer);
+            $existingUrlTransfer = $urlFacade->findUrl($newUrlTransfer);
 
             if ($existingUrlTransfer === null) {
                 continue;

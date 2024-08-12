@@ -13,49 +13,38 @@ use Spryker\Zed\Product\Dependency\Facade\ProductToLocaleBridge;
 use Spryker\Zed\Product\Dependency\Facade\ProductToLocaleInterface;
 use Spryker\Zed\Product\Dependency\Service\ProductToUtilTextBridge;
 use Spryker\Zed\Product\Dependency\Service\ProductToUtilTextInterface;
-use stdClass;
 
 class ProductUrlGeneratorTest extends Unit
 {
     /**
-     * @var \ReflectionClass
-     */
-    private $productUrlGenerator;
-
-    /**
      * @var \Generated\Shared\Transfer\LocaleTransfer
      */
-    private $localeTransferMock;
+    protected $localeTransferMock;
 
     /**
      * @var \Generated\Shared\Transfer\ProductAbstractTransfer
      */
-    private $productAbstractTransfer;
+    protected $productAbstractTransfer;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    private $configMock;
+    protected $configMock;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    private $productUrlGeneratorMock;
+    protected $productAbtractNameGeneratorMock;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    private $productAbtractNameGeneratorMock;
+    protected $utilTextBridgeMock;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    private $utilTextBridgeMock;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $localeBridgeMock;
+    protected $localeBridgeMock;
 
     /**
      * @return void
@@ -103,7 +92,7 @@ class ProductUrlGeneratorTest extends Unit
         $url = $generateUrlByLocale->invoke(
             $mockUrlGenerator,
             $this->productAbstractTransfer,
-            $this->localeTransferMock
+            $this->localeTransferMock,
         );
 
         $this->assertEquals('/de/ergobag-cubo-1', $url);
@@ -124,7 +113,7 @@ class ProductUrlGeneratorTest extends Unit
         $url = $generateUrlByLocale->invoke(
             $mockUrlGenerator,
             $this->productAbstractTransfer,
-            $this->localeTransferMock
+            $this->localeTransferMock,
         );
 
         $this->assertEquals('/ergobag-cubo-1', $url);
@@ -145,7 +134,7 @@ class ProductUrlGeneratorTest extends Unit
         $url = $generateUrlByLocale->invoke(
             $mockUrlGenerator,
             $this->productAbstractTransfer,
-            $this->localeTransferMock
+            $this->localeTransferMock,
         );
 
         $this->assertEquals('/en/ergobag-cubo-1', $url);
@@ -153,36 +142,54 @@ class ProductUrlGeneratorTest extends Unit
 
     /**
      * @param string $locale
+     *
      * @return \FondOfSpryker\Zed\Product\Business\ProductUrlGenerator
      */
-    private function getProductUrlGeneratorMock(string $locale): ProductUrlGenerator
+    protected function getProductUrlGeneratorMock(string $locale): ProductUrlGenerator
     {
-        return new class(
+        return new class (
             $this->productAbtractNameGeneratorMock,
             $this->localeBridgeMock,
             $this->utilTextBridgeMock,
             $this->configMock,
             $locale
         ) extends ProductUrlGenerator {
+            /**
+             * @var string
+             */
             public $mockLocale;
+
+            /**
+             * @param \Spryker\Zed\Product\Business\Product\NameGenerator\ProductAbstractNameGeneratorInterface $productAbstractNameGenerator
+             * @param \Spryker\Zed\Product\Dependency\Facade\ProductToLocaleInterface $localeFacade
+             * @param \Spryker\Zed\Product\Dependency\Service\ProductToUtilTextInterface $utilTextService
+             * @param \FondOfSpryker\Zed\Product\ProductConfig $config
+             * @param string $locale
+             */
             public function __construct(
                 ProductAbstractNameGeneratorInterface $productAbstractNameGenerator,
                 ProductToLocaleInterface $localeFacade,
                 ProductToUtilTextInterface $utilTextService,
                 ProductConfig $config,
-                $locale
-            )
-            {
+                string $locale
+            ) {
                 $this->mockLocale = $locale;
+
                 parent::__construct(
                     $productAbstractNameGenerator,
                     $localeFacade,
                     $utilTextService,
-                    $config
+                    $config,
                 );
             }
 
-            protected function getUrlPrefixByLocale(LocaleTransfer $localeTransfer): string {
+            /**
+             * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
+             *
+             * @return string
+             */
+            protected function getUrlPrefixByLocale(LocaleTransfer $localeTransfer): string
+            {
                 return $this->mockLocale;
             }
         };

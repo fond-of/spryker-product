@@ -8,6 +8,9 @@ use Spryker\Zed\Product\ProductDependencyProvider as BaseProductDependencyProvid
 
 class ProductDependencyProvider extends BaseProductDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const FACADE_URL = 'PRODUCT:FACADE_URL';
 
     /**
@@ -18,9 +21,8 @@ class ProductDependencyProvider extends BaseProductDependencyProvider
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
-        $container = $this->addUrlFacade($container);
 
-        return $container;
+        return $this->addUrlFacade($container);
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace FondOfSpryker\Zed\Product\Business;
 
-use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToStoreInterface;
 use FondOfSpryker\Zed\Product\ProductConfig;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
@@ -34,7 +33,6 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
         ProductToUtilTextInterface $utilTextService,
         ProductConfig $config
     ) {
-
         parent::__construct($productAbstractNameGenerator, $localeFacade, $utilTextService);
 
         $this->config = $config;
