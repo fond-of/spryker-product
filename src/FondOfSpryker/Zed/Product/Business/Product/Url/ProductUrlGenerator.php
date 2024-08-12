@@ -1,41 +1,81 @@
 <?php
 
-namespace FondOfSpryker\Zed\Product\Business;
+namespace FondOfSpryker\Zed\Product\Business\Product\Url;
 
 use FondOfSpryker\Zed\Product\ProductConfig;
 use Generated\Shared\Transfer\LocaleTransfer;
+use Generated\Shared\Transfer\LocalizedUrlTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
+use Generated\Shared\Transfer\ProductUrlTransfer;
 use Spryker\Shared\Kernel\Store;
 use Spryker\Zed\Product\Business\Product\NameGenerator\ProductAbstractNameGeneratorInterface;
-use Spryker\Zed\Product\Business\Product\Url\ProductUrlGenerator as SprykerProductUrlGenerator;
+use Spryker\Zed\Product\Business\Product\Url\ProductUrlGeneratorInterface;
 use Spryker\Zed\Product\Dependency\Facade\ProductToLocaleInterface;
 use Spryker\Zed\Product\Dependency\Service\ProductToUtilTextInterface;
 
-/**
- * Implement your project specific url generation logic
- */
-class ProductUrlGenerator extends SprykerProductUrlGenerator
+class ProductUrlGenerator implements ProductUrlGeneratorInterface
 {
+    /**
+     * @var \Spryker\Zed\Product\Business\Product\NameGenerator\ProductAbstractNameGeneratorInterface
+     */
+    protected ProductAbstractNameGeneratorInterface $productAbstractNameGenerator;
+
+    /**
+     * @var \Spryker\Zed\Product\Dependency\Facade\ProductToLocaleInterface
+     */
+    protected ProductToLocaleInterface $localeFacade;
+
+    /**
+     * @var \Spryker\Zed\Product\Dependency\Service\ProductToUtilTextInterface
+     */
+    protected ProductToUtilTextInterface $utilTextService;
+
     /**
      * @var \FondOfSpryker\Zed\Product\ProductConfig
      */
-    protected $config;
+    protected ProductConfig $productConfig;
 
     /**
      * @param \Spryker\Zed\Product\Business\Product\NameGenerator\ProductAbstractNameGeneratorInterface $productAbstractNameGenerator
      * @param \Spryker\Zed\Product\Dependency\Facade\ProductToLocaleInterface $localeFacade
      * @param \Spryker\Zed\Product\Dependency\Service\ProductToUtilTextInterface $utilTextService
-     * @param \FondOfSpryker\Zed\Product\ProductConfig $config
+     * @param \FondOfSpryker\Zed\Product\ProductConfig $productConfig
      */
     public function __construct(
         ProductAbstractNameGeneratorInterface $productAbstractNameGenerator,
         ProductToLocaleInterface $localeFacade,
         ProductToUtilTextInterface $utilTextService,
-        ProductConfig $config
+        ProductConfig $productConfig
     ) {
-        parent::__construct($productAbstractNameGenerator, $localeFacade, $utilTextService);
+        $this->productAbstractNameGenerator = $productAbstractNameGenerator;
+        $this->localeFacade = $localeFacade;
+        $this->utilTextService = $utilTextService;
+        $this->productConfig = $productConfig;
+    }
 
-        $this->config = $config;
+    /**
+     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductUrlTransfer
+     */
+    public function generateProductUrl(ProductAbstractTransfer $productAbstractTransfer): ProductUrlTransfer
+    {
+        $availableLocales = $this->localeFacade->getLocaleCollection();
+
+        $productUrlTransfer = new ProductUrlTransfer();
+        $productUrlTransfer->setAbstractSku($productAbstractTransfer->getSku());
+
+        foreach ($availableLocales as $localeTransfer) {
+            $url = $this->generateUrlByLocale($productAbstractTransfer, $localeTransfer);
+
+            $localizedUrl = new LocalizedUrlTransfer();
+            $localizedUrl->setLocale($localeTransfer);
+            $localizedUrl->setUrl($url);
+
+            $productUrlTransfer->addUrl($localizedUrl);
+        }
+
+        return $productUrlTransfer;
     }
 
     /**
@@ -48,7 +88,7 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
         ProductAbstractTransfer $productAbstractTransfer,
         LocaleTransfer $localeTransfer
     ): string {
-        $urlLocaleToSkip = $this->config->getUrlLocaleToSkip();
+        $urlLocaleToSkip = $this->productConfig->getUrlLocaleToSkip();
         $urlPrefix = $this->getUrlPrefixByLocale($localeTransfer);
         $urlKey = $this->getUrlKey($productAbstractTransfer, $localeTransfer);
 
@@ -69,7 +109,7 @@ class ProductUrlGenerator extends SprykerProductUrlGenerator
         ProductAbstractTransfer $productAbstractTransfer,
         LocaleTransfer $localeTransfer
     ): string {
-        $urlAttributeCode = $this->config->getUrlAttributeCode();
+        $urlAttributeCode = $this->productConfig->getUrlAttributeCode();
         $localizedProductName = $this->productAbstractNameGenerator->getLocalizedProductAbstractName($productAbstractTransfer, $localeTransfer);
         $slug = $this->utilTextService->generateSlug($localizedProductName);
 

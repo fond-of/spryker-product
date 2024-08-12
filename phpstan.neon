@@ -1,5 +1,3 @@
-
-
 parameters:
     level: 4
     reportUnmatchedIgnoredErrors: false

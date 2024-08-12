@@ -2,10 +2,11 @@
 
 namespace FondOfSpryker\Zed\Product\Business;
 
-use FondOfSpryker\Zed\Product\Business\Product\Sku\SkuGenerator;
+use FondOfSpryker\Zed\Product\Business\Product\Url\ProductUrlGenerator;
+use FondOfSpryker\Zed\Product\Business\Product\Url\ProductUrlManager;
+use FondOfSpryker\Zed\Product\Business\Product\Url\ProductUrlManagerInterface;
 use FondOfSpryker\Zed\Product\Dependency\Facade\ProductToUrlInterface;
 use FondOfSpryker\Zed\Product\ProductDependencyProvider;
-use Spryker\Zed\Product\Business\Product\Sku\SkuGeneratorInterface;
 use Spryker\Zed\Product\Business\Product\Url\ProductUrlGeneratorInterface;
 use Spryker\Zed\Product\Business\ProductBusinessFactory as BaseProductBusinessFactory;
 
@@ -31,7 +32,7 @@ class ProductBusinessFactory extends BaseProductBusinessFactory
     }
 
     /**
-     * @return \FondOfSpryker\Zed\Product\Business\ProductUrlManagerInterface
+     * @return \FondOfSpryker\Zed\Product\Business\Product\Url\ProductUrlManagerInterface
      */
     public function createProductUrlManager(): ProductUrlManagerInterface
     {
@@ -43,14 +44,6 @@ class ProductBusinessFactory extends BaseProductBusinessFactory
             $this->createProductUrlGenerator(),
             $this->createProductEventTrigger(),
         );
-    }
-
-    /**
-     * @return \Spryker\Zed\Product\Business\Product\Sku\SkuGeneratorInterface
-     */
-    public function createSkuGenerator(): SkuGeneratorInterface
-    {
-        return new SkuGenerator($this->getUtilTextService(), $this->createSkuIncrementGenerator());
     }
 
     /**

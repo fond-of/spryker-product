@@ -3,9 +3,9 @@
 namespace FondOfSpryker\Zed\Product;
 
 use FondOfSpryker\Shared\Product\ProductConstants;
-use Spryker\Zed\Kernel\AbstractBundleConfig;
+use Spryker\Zed\Product\ProductConfig as SprykerProductConfig;
 
-class ProductConfig extends AbstractBundleConfig
+class ProductConfig extends SprykerProductConfig
 {
     /**
      * @return string

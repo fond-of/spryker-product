@@ -56,7 +56,7 @@ class ProductFacade extends BaseProductFacade implements ProductFacadeInterface
      */
     public function canPersistProductAbstractUrl(ProductAbstractTransfer $productAbstractTransfer): bool
     {
-        /** @var \FondOfSpryker\Zed\Product\Business\ProductUrlManagerInterface $productUrlManager */
+        /** @var \FondOfSpryker\Zed\Product\Business\Product\Url\ProductUrlManagerInterface $productUrlManager */
         $productUrlManager = $this->getFactory()->createProductUrlManager();
 
         return $productUrlManager->canPersistProductUrl($productAbstractTransfer);

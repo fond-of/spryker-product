@@ -3,6 +3,7 @@
 namespace FondOfSpryker\Zed\Product\Business;
 
 use Codeception\Test\Unit;
+use FondOfSpryker\Zed\Product\Business\Product\Url\ProductUrlGenerator;
 use FondOfSpryker\Zed\Product\ProductConfig;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
@@ -143,7 +144,7 @@ class ProductUrlGeneratorTest extends Unit
     /**
      * @param string $locale
      *
-     * @return \FondOfSpryker\Zed\Product\Business\ProductUrlGenerator
+     * @return \FondOfSpryker\Zed\Product\Business\Product\Url\ProductUrlGenerator
      */
     protected function getProductUrlGeneratorMock(string $locale): ProductUrlGenerator
     {

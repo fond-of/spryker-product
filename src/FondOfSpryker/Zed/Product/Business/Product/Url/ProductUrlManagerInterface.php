@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\Product\Business;
+namespace FondOfSpryker\Zed\Product\Business\Product\Url;
 
 use Generated\Shared\Transfer\ProductAbstractTransfer;
 use Spryker\Zed\Product\Business\Product\Url\ProductUrlManagerInterface as SprykerProductUrlManangerInterface;

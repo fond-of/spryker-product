@@ -20,18 +20,12 @@
       "email": "p-fischer@gmx.net"
     }
   ],
-  "scripts": {
-    "ci": "make ci",
-    "codeception": "make codeception",
-    "phpcs": "make phpcs",
-    "phpstan": "make phpstan"
-  },
   "require": {
-    "php": ">=7.4",
+    "php": ">=8.0",
     "spryker/product": "^6.29.0"
   },
   "require-dev": {
-    "fond-of-codeception/spryker": "^1.0",
+    "fond-of-codeception/spryker": "^2.0.0",
     "spryker/code-sniffer": "*",
     "spryker-sdk/phpstan-spryker": "*"
   },

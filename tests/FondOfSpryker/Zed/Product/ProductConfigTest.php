@@ -7,7 +7,7 @@ use Codeception\Test\Unit;
 class ProductConfigTest extends Unit
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \FondOfSpryker\Zed\Product\ProductConfig|\PHPUnit\Framework\MockObject\MockObject
      */
     private $configMock;
 
