@@ -11,9 +11,9 @@ use Spryker\Zed\Product\Business\Product\Url\ProductUrlGeneratorInterface;
 use Spryker\Zed\Product\Business\ProductBusinessFactory as BaseProductBusinessFactory;
 
 /**
- * @method \Spryker\Zed\Product\ProductConfig getConfig()
+ * @method \FondOfSpryker\Zed\Product\ProductConfig getConfig()
  * @method \Spryker\Zed\Product\Persistence\ProductEntityManagerInterface getEntityManager()
- * @method \Spryker\Zed\Product\Persistence\ProductQueryContainerInterface getQueryContainer()
+ * @method \FondOfSpryker\Zed\Product\Persistence\ProductQueryContainerInterface getQueryContainer()
  * @method \Spryker\Zed\Product\Persistence\ProductRepositoryInterface getRepository()
  */
 class ProductBusinessFactory extends BaseProductBusinessFactory
@@ -43,6 +43,7 @@ class ProductBusinessFactory extends BaseProductBusinessFactory
             $this->getQueryContainer(),
             $this->createProductUrlGenerator(),
             $this->createProductEventTrigger(),
+            $this->getStoreFacade(),
         );
     }
 

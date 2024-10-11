@@ -22,7 +22,8 @@
   ],
   "require": {
     "php": ">=8.0",
-    "spryker/product": "^6.29.0"
+    "spryker/product": "^6.0.0",
+    "fond-of-spryker/url-store": "dev-main"
   },
   "require-dev": {
     "fond-of-codeception/spryker": "^2.0.0",
